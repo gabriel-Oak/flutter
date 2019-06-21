@@ -1,4 +1,4 @@
-#Wed Jun 19 13:14:11 BRT 2019
-base.0=C\:\\Users\\Gabriel Carvalho\\Projetos\\flutter\\projeto2\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+#Fri Jun 21 13:52:34 BRT 2019
+base.0=C\:\\Users\\Gabriel Carvalho\\Projetos\\flutter\\dog-life\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

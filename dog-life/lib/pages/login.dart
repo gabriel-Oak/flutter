@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/pages/reset-password.dart';
+import 'package:projeto2/pages/singup.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -161,7 +162,17 @@ class LoginPage extends StatelessWidget {
                   "Cadastro",
                   textAlign: TextAlign.center,
                 ),
-                onPressed: () => {},
+                onPressed: () {
+                  new Future.delayed(
+                    const Duration(milliseconds: 400),
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SingUp(), 
+                      ),
+                    )
+                  );
+                },
               ),
             )
           ],
