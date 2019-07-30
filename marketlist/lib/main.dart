@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/home.dart';
 import 'pages/about.dart';
+import 'pages/settings.dart';
 import 'layout.dart';
 
 void main() => runApp(MarketList());
@@ -10,7 +11,8 @@ class MarketList extends StatelessWidget {
 
   final routes = <String, WidgetBuilder> {
     HomePage.tag: (context) => HomePage(),
-    AboutPage.tag: (context) => AboutPage()
+    AboutPage.tag: (context) => AboutPage(),
+    SettingsPage.tag: (context) => SettingsPage()
   };
 
   @override
@@ -35,6 +37,7 @@ class MarketList extends StatelessWidget {
         )
       ),
       home: HomePage(),
+      routes: routes,
     );
   }
 }

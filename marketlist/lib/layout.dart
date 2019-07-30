@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'pages/settings.dart';
+import 'pages/home.dart';
+import 'pages/about.dart';
+
 class Layout {
+
+  static final pages = [
+    HomePage.tag,
+    AboutPage.tag,
+    SettingsPage.tag
+  ];
+
+  static int currItem = 0;
+
   static Scaffold getContent(BuildContext context, content) {
     return Scaffold(
       appBar: AppBar(
@@ -10,6 +23,28 @@ class Layout {
         ),
       ),
       body: content,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currItem,
+        fixedColor: primary(),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home') 
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.question_answer),
+            title: Text('Sobre')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Configurações')
+          )
+        ],
+        onTap: (int index) {
+          currItem = index;
+          Navigator.of(context).pushNamed(pages[currItem]);
+        },
+      ),
     );
   }
 
