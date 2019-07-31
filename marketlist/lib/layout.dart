@@ -21,6 +21,51 @@ class Layout {
         title: Center(
           child: Text('MarketList'),
         ),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+
+              showDialog(
+                context: context,
+                // barrierDismissible: false,
+                builder: (BuildContext ctx) {
+
+                  final input = TextFormField();
+
+                  return AlertDialog(
+                    title: Text( 'Nova Lista'),
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: <Widget>[
+                          Text('Nome'),
+                          input
+                        ],
+                      ),
+                    ),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Cancelar'),
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        }
+                      ),
+                      FlatButton(
+                        color: Layout.primary(),
+                        child: Text('Adicionar', style: TextStyle(color: Layout.light()),),
+                        onPressed: () {
+                          
+                        }
+                      )
+                    ]
+                  );
+                }
+              );
+
+            },
+            child: Icon(Icons.add)
+          ),
+          Padding(padding: EdgeInsets.only(right: 20))
+        ],
       ),
       body: content,
       bottomNavigationBar: BottomNavigationBar(

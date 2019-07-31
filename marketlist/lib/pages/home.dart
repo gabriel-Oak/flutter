@@ -11,8 +11,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final content = Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Hello World'),
+          Text('Bem vindo!'),
           RaisedButton(
             child: Text('Sobre'),
             onPressed: () {
