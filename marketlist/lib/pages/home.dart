@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketlist/layout.dart';
 
-import 'about.dart';
+import '../widgets/HomeList.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -9,21 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('Bem vindo!'),
-          RaisedButton(
-            child: Text('Sobre'),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AboutPage.tag);
-            },
-          )
-        ],
-      ),
-    );
-
+    final content = HomeList();
+    
     return Layout.getContent(context, content);
   }
 }

@@ -4,6 +4,8 @@ import 'pages/settings.dart';
 import 'pages/home.dart';
 import 'pages/about.dart';
 
+import 'widgets/HomeList.dart';
+
 class Layout {
 
   static final pages = [
@@ -21,56 +23,7 @@ class Layout {
         title: Center(
           child: Text('MarketList'),
         ),
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {
-
-              showDialog(
-                context: context,
-                // barrierDismissible: false,
-                builder: (BuildContext ctx) {
-
-                  final _inputListaControler = TextEditingController();
-
-                  return AlertDialog(
-                    title: Text( 'Nova Lista'),
-                    content: SingleChildScrollView(
-                      child: ListBody(
-                        children: <Widget>[
-                          TextFormField(
-                            autofocus: true,
-                            controller: _inputListaControler,
-                            decoration: InputDecoration(
-                              hintText: 'Nome da sua lista'
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text('Cancelar'),
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        }
-                      ),
-                      FlatButton(
-                        color: Layout.primary(),
-                        child: Text('Adicionar', style: TextStyle(color: Layout.light()),),
-                        onPressed: () {
-                          print(_inputListaControler.text);
-                        }
-                      )
-                    ]
-                  );
-                }
-              );
-
-            },
-            child: Icon(Icons.add)
-          ),
-          Padding(padding: EdgeInsets.only(right: 20))
-        ],
+        actions: Layout.getActions(context),
       ),
       body: content,
       bottomNavigationBar: BottomNavigationBar(
@@ -96,6 +49,75 @@ class Layout {
         },
       ),
     );
+  }
+
+  static List<Widget> getActions(BuildContext context) {
+    List<Widget> items = List<Widget>();
+
+    if ( currItem != 0) {
+      return items;
+    }
+
+    items.add(
+      GestureDetector(
+        onTap: () {
+
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext ctx) {
+
+              final _inputListaControler = TextEditingController();
+
+              return AlertDialog(
+                title: Text( 'Nova Lista'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      TextFormField(
+                        autofocus: true,
+                        controller: _inputListaControler,
+                        decoration: InputDecoration(
+                          hintText: 'Nome da sua lista'
+                        )
+                      )
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('Cancelar'),
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    }
+                  ),
+                  FlatButton(
+                    color: Layout.primary(),
+                    child: Text('Adicionar', style: TextStyle(color: Layout.light()),),
+                    onPressed: () {
+
+                      HomeList.items.add(
+                        ListTile(
+                          leading: Icon(Icons.pages),
+                          title: Text(_inputListaControler.text),
+                          trailing: Icon(Icons.more_vert),
+                        )
+                      );
+
+                      Navigator.of(ctx).pushReplacementNamed(HomePage.tag);
+                    }
+                  )
+                ]
+              );
+            }
+          );
+
+        },
+        child: Icon(Icons.add)
+      ),
+    );
+    items.add(Padding(padding: EdgeInsets.only(right: 20)));
+    return items;
   }
 
   static Color primary([double opacity = 1]) => Color.fromRGBO(62, 63, 89, opacity);
