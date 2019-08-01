@@ -30,15 +30,20 @@ class Layout {
                 // barrierDismissible: false,
                 builder: (BuildContext ctx) {
 
-                  final input = TextFormField();
+                  final _inputListaControler = TextEditingController();
 
                   return AlertDialog(
                     title: Text( 'Nova Lista'),
                     content: SingleChildScrollView(
                       child: ListBody(
                         children: <Widget>[
-                          Text('Nome'),
-                          input
+                          TextFormField(
+                            autofocus: true,
+                            controller: _inputListaControler,
+                            decoration: InputDecoration(
+                              hintText: 'Nome da sua lista'
+                            )
+                          )
                         ],
                       ),
                     ),
@@ -53,7 +58,7 @@ class Layout {
                         color: Layout.primary(),
                         child: Text('Adicionar', style: TextStyle(color: Layout.light()),),
                         onPressed: () {
-                          
+                          print(_inputListaControler.text);
                         }
                       )
                     ]
